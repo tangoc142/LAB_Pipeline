@@ -1,1 +1,14 @@
 kind: pipeline
+type: docker
+name: Testing python CI/CD
+
+steps:
+- name: Check IP Interfaces
+  image: imrannk/netauto
+  environment:
+    PASSWORD:
+      from_secret: PASSWORD
+    USER:
+      from_secret: USER
+  commands:
+  - python3 checkip.py
