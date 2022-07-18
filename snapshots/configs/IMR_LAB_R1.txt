@@ -1,5 +1,5 @@
 !
-! Last configuration change at 08:44:26 UTC Mon Jul 18 2022 by imran
+! Last configuration change at 08:49:21 UTC Mon Jul 18 2022 by imran
 upgrade fpd auto
 version 15.2
 service timestamps debug datetime msec
@@ -34,11 +34,15 @@ multilink bundle-name authenticated
 !
 !
 !
+archive
+ path disk0:
+file prompt quiet
 username imran privilege 15 secret 5 $1$r5kD$eesDkKP1Y8JxaGQzLR5mi/
 !
 redundancy
 !
 !
+ip scp server enable
 !
 !
 !
@@ -52,9 +56,6 @@ redundancy
 interface FastEthernet0/0
  ip address 192.168.0.108 255.255.255.0
  duplex half
-!
-interface loopback0
- ip address 1.1.1.1 255.255.255.255
 !
 ip forward-protocol nd
 no ip http server
