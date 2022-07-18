@@ -3,12 +3,40 @@ type: docker
 name: Testing python CI/CD
 
 steps:
-
 - name: Black Code Format Check
   image: imrannk/netauto
   commands:
   - black . --check
-  
+
+- name: Batfish Prechecks
+  image: imrannk/netauto
+  commands:
+  - python batfishcheck.py
+
+- name: Precheck Configuration Diff
+  image: imrannk/netauto
+  environment:
+    PASSWORD:
+      from_secret: PASSWORD
+    USER:
+      from_secret: USER
+  commands:
+  - python build.py --dry_run
+
+- name: Deploy Configuration
+  image: imrannk/netauto
+  environment:
+    PASSWORD:
+      from_secret: PASSWORD
+    USER:
+      from_secret: USER
+  commands:
+  - python build.py --no_dry_run
+  when:
+    branch:
+    - master
+    - main
+    
 - name: Check IP Interfaces
   image: imrannk/netauto
   environment:
