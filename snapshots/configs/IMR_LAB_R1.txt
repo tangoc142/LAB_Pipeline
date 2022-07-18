@@ -1,5 +1,7 @@
 !
-version 15.7
+! Last configuration change at 08:38:30 UTC Mon Jul 18 2022
+upgrade fpd auto
+version 15.2
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
@@ -15,28 +17,6 @@ no aaa new-model
 !
 !
 !
-mmi polling-interval 60
-no mmi auto-configure
-no mmi pvc
-mmi snmp-timeout 180
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-!
-
-
-!
 !
 !
 !
@@ -46,7 +26,6 @@ no ipv6 cef
 !
 multilink bundle-name authenticated
 !
-domain imran.com
 !
 !
 !
@@ -55,7 +34,7 @@ domain imran.com
 !
 !
 !
-username imran privilege 15 secret 5 $1$srt3$rTZYympKR5Co6ywSVpbq70
+username imran privilege 15 secret 5 $1$r5kD$eesDkKP1Y8JxaGQzLR5mi/
 !
 redundancy
 !
@@ -70,36 +49,17 @@ redundancy
 !
 !
 !
-!
-!
-!
-interface Ethernet0/0
+interface FastEthernet0/0
  ip address 192.168.0.108 255.255.255.0
- duplex auto
-!
-interface Ethernet0/1
- no ip address
- shutdown
- duplex auto
-!
-interface Ethernet0/2
- no ip address
- shutdown
- duplex auto
-!
-interface Ethernet0/3
- no ip address
- shutdown
- duplex auto
+ duplex half
 !
 ip forward-protocol nd
-!
-!
 no ip http server
 no ip http secure-server
+!
+!
 ip route 0.0.0.0 0.0.0.0 192.168.0.1
 !
-ipv6 ioam timestamp
 !
 !
 !
@@ -107,17 +67,21 @@ control-plane
 !
 !
 !
+mgcp profile default
 !
 !
 !
+gatekeeper
+ shutdown
 !
 !
 line con 0
- logging synchronous
+ stopbits 1
 line aux 0
+ stopbits 1
 line vty 0 4
  login local
- transport input ssh
+ transport input telnet ssh
 !
 !
 end
