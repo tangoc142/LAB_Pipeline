@@ -3,6 +3,12 @@ type: docker
 name: Testing python CI/CD
 
 steps:
+
+- name: Black Code Format Check
+  image: imrannk/netauto
+  commands:
+  - black . --check
+  
 - name: Check IP Interfaces
   image: imrannk/netauto
   environment:
