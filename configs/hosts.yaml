@@ -1,0 +1,5 @@
+---
+IMR_LAB_R1:
+  hostname: 192.168.0.108
+  groups:
+    - ios
