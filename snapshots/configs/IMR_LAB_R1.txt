@@ -63,6 +63,10 @@ interface loopback0
 interface loopback1
  ip address 1.1.1.2 255.255.255.255
 !
+!
+interface loopback2
+ ip address 2.2.2.2 255.255.255.255
+!
 ip forward-protocol nd
 no ip http server
 no ip http secure-server
