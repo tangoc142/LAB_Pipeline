@@ -57,6 +57,9 @@ interface FastEthernet0/0
  ip address 192.168.0.108 255.255.255.0
  duplex half
 !
+interface loopback0
+ ip address 1.1.1.1 255.255.255.255
+!
 ip forward-protocol nd
 no ip http server
 no ip http secure-server
