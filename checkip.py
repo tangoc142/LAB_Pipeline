@@ -13,5 +13,5 @@ iosv_l2_s1 = {
 }
 
 net_connect = ConnectHandler(**iosv_l2_s1)
-output = net_connect.send_command("show ip int brief")
+output = net_connect.send_command("show ip route")
 print(output)
